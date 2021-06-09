@@ -4,7 +4,7 @@
 
 Penguin::Penguin() : ppng(), penguin()
 {
-    if (ppng.loadFromFile("textures/pengguion.png"))
+    if (ppng.loadFromFile("textures/penguion.png"))
     {
         penguin.setTexture(ppng);
     }

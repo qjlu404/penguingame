@@ -4,10 +4,10 @@
 void Game::process()
 {
     sf::Event event;
-    while (window.pollEvent(event))
+    while (window->pollEvent(event))
     {
         if (event.type == sf::Event::Closed)
-            window.close();
+            window->close();
     }
 }
 void Game::update()
@@ -15,17 +15,18 @@ void Game::update()
 }
 void Game::render()
 {
-    window.clear(sf::Color(0,200,255,200));
-    window.display();
+    window->clear(sf::Color(0,200,255,200));
+    window->display();
 }
 
 // public
-Game::Game() : player()
+Game::Game(sf::RenderWindow* inwin) : player()
 {
+    window = inwin;
 }
 void Game::run()
 {
-    while (window.isOpen())
+    while (window->isOpen())
     {
         process();
         update();

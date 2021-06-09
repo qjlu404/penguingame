@@ -7,12 +7,12 @@
 #include <vector>
 class Game
 {
-	sf::RenderWindow window;
+	sf::RenderWindow* window;
 	Penguin player;
 	void process();
 	void update();
 	void render();
 public:
-	Game();
+	Game(sf::RenderWindow* inwin);
 	void run();
 };

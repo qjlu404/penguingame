@@ -18,7 +18,7 @@ public:
     Menu(float x, float y, std::string title);
     void append(std::string txt);
     void update(sf::RenderWindow& window);
-    void draw(sf::RenderWindow& window);
+    void draw(sf::RenderWindow* window);
     short getItemIndex();
     void show();
     void hide();

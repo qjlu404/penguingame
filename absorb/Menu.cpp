@@ -100,16 +100,16 @@ void Menu::update(sf::RenderWindow& window)
     }
     border.setSize(sf::Vector2f(300, 40 + menu.size() * 60));
 }
-void Menu::draw(sf::RenderWindow& window)
+void Menu::draw(sf::RenderWindow* window)
 {
     if (visible)
     {
-        window.draw(border);
-        window.draw(menuname);
+        window->draw(border);
+        window->draw(menuname);
         for (size_t i = 0; i < rects.size(); i++)
-            window.draw(rects[i]);
+            window->draw(rects[i]);
         for (size_t i = 0; i < menu.size(); i++)
-            window.draw(menu[i]);
+            window->draw(menu[i]);
     }
 }
 short Menu::getItemIndex()
