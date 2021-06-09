@@ -8,6 +8,7 @@
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
+    window.setFramerateLimit(60);
     sf::CircleShape cursor;
     Game game(&window);
     Menu MainMenu(10, 50, "Main Menu");
@@ -32,13 +33,14 @@ int main()
         {
         case 0:
             game.run();
+            MainMenu.clearitemindex();
+            break;
         case 1:
             return 0;
-        default:
-            break;
         }
-        MainMenu.update(window);
-        cursor.setPosition(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
+        MainMenu.update(&window);
+        cursor.setPosition(sf::Mouse::getPosition(window).x,
+                           sf::Mouse::getPosition(window).y);
 
         window.clear(sf::Color::Color(30,0,0,255));
         MainMenu.draw(&window);

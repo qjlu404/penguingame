@@ -8,7 +8,10 @@
 class Game
 {
 	sf::RenderWindow* window;
+	sf::CircleShape cursor;
 	Penguin player;
+	Menu exitmenu;
+	bool wexit;
 	void process();
 	void update();
 	void render();

@@ -48,38 +48,16 @@ Menu::Menu(float x, float y, std::string title) : font(), menu(), border(), menu
     menuname.setPosition(border.getPosition().x + 150 + menuname.getCharacterSize() / 2, border.getPosition().y - 20);
 
 }
-void Menu::append(std::string txt)
-{
-    //rectangles
-    sf::RectangleShape itembg;
-    itembg.setPosition(border.getPosition().x + 50, border.getPosition().y + 50 + 40 * menu.size());
-    itembg.setSize(sf::Vector2f(200, 40));
-    itembg.setFillColor(sf::Color::Blue);
-    itembg.setOutlineColor(sf::Color::Black);
-    itembg.setOutlineThickness(3);
-
-    //text
-    sf::Text menuitem;
-    menuitem.setFont(font);
-    menuitem.setPosition(itembg.getPosition().x + 30, itembg.getPosition().y + 5);
-    menuitem.setFillColor(sf::Color::White);
-    menuitem.setString(txt);
-
-    //updating
-    rects.push_back(itembg);
-    menu.push_back(menuitem);
-    border.setSize(sf::Vector2f(300, 40 + menu.size() * 60));
-}
-void Menu::update(sf::RenderWindow& window)
+void Menu::update(sf::RenderWindow* window)
 {
     if (visible)
     {
         for (size_t i = 0; i < rects.size(); i++)
         {
-            if (sf::Mouse::getPosition(window).x > rects[i].getPosition().x
-                && sf::Mouse::getPosition(window).y > rects[i].getPosition().y
-                && sf::Mouse::getPosition(window).x < rects[i].getPosition().x + rects[i].getSize().x
-                && sf::Mouse::getPosition(window).y < rects[i].getPosition().y + rects[i].getSize().y)
+            if (sf::Mouse::getPosition(*window).x > rects[i].getPosition().x
+                && sf::Mouse::getPosition(*window).y > rects[i].getPosition().y
+                && sf::Mouse::getPosition(*window).x < rects[i].getPosition().x + rects[i].getSize().x
+                && sf::Mouse::getPosition(*window).y < rects[i].getPosition().y + rects[i].getSize().y)
             {
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
                 {
@@ -112,9 +90,43 @@ void Menu::draw(sf::RenderWindow* window)
             window->draw(menu[i]);
     }
 }
+void Menu::append(std::string txt)
+{
+    //rectangles
+    sf::RectangleShape itembg;
+    itembg.setPosition(border.getPosition().x + 50, border.getPosition().y + 50 + 40 * menu.size());
+    itembg.setSize(sf::Vector2f(200, 40));
+    itembg.setFillColor(sf::Color::Blue);
+    itembg.setOutlineColor(sf::Color::Black);
+    itembg.setOutlineThickness(3);
+
+    //text
+    sf::Text menuitem;
+    menuitem.setFont(font);
+    menuitem.setPosition(itembg.getPosition().x + 30, itembg.getPosition().y + 5);
+    menuitem.setFillColor(sf::Color::White);
+    menuitem.setString(txt);
+
+    //updating
+    rects.push_back(itembg);
+    menu.push_back(menuitem);
+    border.setSize(sf::Vector2f(300, 40 + menu.size() * 60));
+}
+sf::Vector2f Menu::getsize()
+{
+    return border.getSize();
+}
 short Menu::getItemIndex()
 {
     return selecteditem;
+}
+void Menu::clearitemindex()
+{
+    selecteditem = -1;
+}
+bool Menu::isvisible()
+{
+    return visible;
 }
 void Menu::show()
 {

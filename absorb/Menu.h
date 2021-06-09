@@ -17,9 +17,12 @@ public:
     Menu();
     Menu(float x, float y, std::string title);
     void append(std::string txt);
-    void update(sf::RenderWindow& window);
+    void update(sf::RenderWindow* window);
     void draw(sf::RenderWindow* window);
+    sf::Vector2f getsize();
+    void clearitemindex();
     short getItemIndex();
+    bool isvisible();
     void show();
     void hide();
 };
