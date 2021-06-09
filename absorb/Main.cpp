@@ -42,6 +42,7 @@ int main()
 
         window.clear(sf::Color::Color(30,0,0,255));
         MainMenu.draw(&window);
+        
         window.draw(cursor);
         window.display();
     }

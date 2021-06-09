@@ -17,10 +17,12 @@ Penguin::Penguin() : ppng(), penguin()
         std::getline(std::cin, a);
         ::ShowWindow(::GetConsoleWindow(), SW_HIDE);
         penguin.setColor(sf::Color::Color(100, 100, 100, 255));
+        penguin.setPosition(100, 100);
     }
+    penguin.setPosition(750, 500);
 }
 
-void Penguin::draw()
+void Penguin::draw(sf::RenderWindow* window)
 {
-
+    window->draw(penguin);
 }
