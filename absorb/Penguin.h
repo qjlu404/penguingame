@@ -8,7 +8,7 @@ class Penguin
 	sf::Texture ppng;
 	sf::Sprite penguin;
 public:
-	void draw();
+	void draw(sf::RenderWindow* window);
 	Penguin();
 };
 
